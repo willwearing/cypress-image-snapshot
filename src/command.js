@@ -20,6 +20,8 @@ export function matchImageSnapshotCommand(defaultOptions) {
     };
 
     cy.task(MATCH, {
+      // eg. `cypress/integration/myDir/mySpec.js
+      specFileRelativeToRoot: Cypress.spec.relative,
       screenshotsFolder,
       updateSnapshots,
       options,
