@@ -41,7 +41,7 @@ Then add the following in your project's `cypress.config.js`:
 const { defineConfig } = require('cypress');
 const {
   addMatchImageSnapshotPlugin,
-} = require('cypress-image-snapshot/plugin');
+} = require('@simonsmith/cypress-image-snapshot/plugin');
 
 module.exports = defineConfig({
   e2e: {
@@ -55,7 +55,7 @@ module.exports = defineConfig({
 and in `<rootDir>/cypress/support/commands.js` add:
 
 ```js
-import { addMatchImageSnapshotCommand } from 'cypress-image-snapshot/command';
+import { addMatchImageSnapshotCommand } from '@simonsmith/cypress-image-snapshot/command';
 
 addMatchImageSnapshotCommand();
 ```
