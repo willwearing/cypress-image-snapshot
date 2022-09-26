@@ -1,6 +1,6 @@
 {
   "name": "@simonsmith/cypress-image-snapshot",
-  "version": "5.0.4",
+  "version": "5.0.5",
   "description": "Cypress bindings for jest-image-snapshot.",
   "repository": "https://github.com/simonsmith/cypress-image-snapshot",
   "author": "Jack Cross <jack@palmer.net>",
