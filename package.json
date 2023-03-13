@@ -49,7 +49,7 @@
     "rimraf": "^2.6.2"
   },
   "peerDependencies": {
-    "cypress": "^10.0.0"
+    "cypress": "^10.0.0 || ^11.0.0 || ^12.0.0"
   },
   "husky": {
     "hooks": {
