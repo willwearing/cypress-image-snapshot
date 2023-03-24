@@ -118,6 +118,10 @@ Run Cypress with `--env updateSnapshots=true` in order to update the base image 
 
 Run Cypress with `--env failOnSnapshotDiff=false` in order to prevent test failures when an image diff does not pass.
 
+### Requiring snapshots to be present
+
+Run Cypress with `--env requireSnapshots=true` in order to fail if snapshots are missing. This is useful in continuous integration where snapshots should be present in advance.
+
 ### Reporter
 
 Run Cypress with `--reporter cypress-image-snapshot/reporter` in order to report snapshot diffs in your test results. This can be helpful to use with `--env failOnSnapshotDiff=false` in order to quickly view all failing snapshots and their diffs.

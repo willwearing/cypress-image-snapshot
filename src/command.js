@@ -9,6 +9,7 @@ import { MATCH, RECORD } from './constants';
 
 const screenshotsFolder = Cypress.config('screenshotsFolder');
 const updateSnapshots = Cypress.env('updateSnapshots') || false;
+const requireSnapshots = Cypress.env('requireSnapshots') || false;
 const failOnSnapshotDiff =
   typeof Cypress.env('failOnSnapshotDiff') === 'undefined';
 
@@ -44,6 +45,10 @@ export function matchImageSnapshotCommand(defaultOptions) {
           diffPixelCount,
           diffOutputPath,
         }) => {
+          if (added && requireSnapshots && !failOnSnapshotDiff) {
+            throw new Error(`New snapshot ${name} was added, but 'requireSnapshots' was set to true.
+            This is likely because this test was run in a CI environment in which snapshots should already be committed.`);
+          }
           if (!pass && !added && !updated) {
             const message = diffSize
               ? `Image size (${imageDimensions.baselineWidth}x${
