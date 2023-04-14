@@ -14,7 +14,7 @@ import { MATCH, RECORD } from './constants';
 let snapshotOptions = {};
 let snapshotResult = {};
 let snapshotRunning = false;
-const kebabSnap = '-snap.png';
+const identifierExt = '.png';
 const dotSnap = '.snap.png';
 const dotDiff = '.diff.png';
 
@@ -80,9 +80,9 @@ export function matchImageSnapshotPlugin({ path: screenshotPath }) {
     ? path.join(process.cwd(), customSnapshotsDir, specFileRelativeToRoot)
     : path.join(screenshotsFolder, '..', 'snapshots', specFileRelativeToRoot);
 
-  const snapshotKebabPath = path.join(
+  const snapshotIdentifierPath = path.join(
     snapshotsDir,
-    `${snapshotIdentifier}${kebabSnap}`
+    `${snapshotIdentifier}${identifierExt}`
   );
 
   const snapshotDotPath = path.join(
@@ -97,7 +97,7 @@ export function matchImageSnapshotPlugin({ path: screenshotPath }) {
   const diffDotPath = path.join(diffDir, `${snapshotIdentifier}${dotDiff}`);
 
   if (fs.pathExistsSync(snapshotDotPath)) {
-    fs.copySync(snapshotDotPath, snapshotKebabPath);
+    fs.copySync(snapshotDotPath, snapshotIdentifierPath);
   }
 
   snapshotResult = diffImageToSnapshot({
@@ -116,7 +116,7 @@ export function matchImageSnapshotPlugin({ path: screenshotPath }) {
   if (!pass && !added && !updated) {
     fs.copySync(diffOutputPath, diffDotPath);
     fs.removeSync(diffOutputPath);
-    fs.removeSync(snapshotKebabPath);
+    fs.removeSync(snapshotIdentifierPath);
     snapshotResult.diffOutputPath = diffDotPath;
 
     return {
@@ -124,8 +124,8 @@ export function matchImageSnapshotPlugin({ path: screenshotPath }) {
     };
   }
 
-  fs.copySync(snapshotKebabPath, snapshotDotPath);
-  fs.removeSync(snapshotKebabPath);
+  fs.copySync(snapshotIdentifierPath, snapshotDotPath);
+  fs.removeSync(snapshotIdentifierPath);
   snapshotResult.diffOutputPath = snapshotDotPath;
 
   return {
