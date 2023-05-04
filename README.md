@@ -35,13 +35,21 @@ Install from npm
 npm install --save-dev @simonsmith/cypress-image-snapshot
 ```
 
+To install the types
+```bash
+npm i --save-dev @types/simonsmith__cypress-image-snapshot@npm:@types/cypress-image-snapshot
+```
+
 Then add the following in your project's `cypress.config.js`:
 
 ```js
 const { defineConfig } = require('cypress');
+
 const {
   addMatchImageSnapshotPlugin,
 } = require('@simonsmith/cypress-image-snapshot/plugin');
+// Or if you are using Typescript:
+// import { addMatchImageSnapshotPlugin } from "@simonsmith/cypress-image-snapshot/plugin";
 
 module.exports = defineConfig({
   e2e: {
